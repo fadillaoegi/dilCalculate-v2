@@ -6,14 +6,14 @@ import 'features/calculator/presentation/pages/calculator_page.dart';
 void main() {
   runApp(
     const ProviderScope(
-      child: MyApp(),
+      child: MainApp(),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

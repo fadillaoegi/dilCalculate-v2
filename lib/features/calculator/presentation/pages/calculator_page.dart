@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import '../../../../core/utils/number_formatter.dart';
 import '../providers/calculator_provider.dart';
 import '../widgets/calc_button.dart';
 
@@ -31,14 +32,14 @@ class CalculatorPage extends ConsumerWidget {
                       scrollDirection: Axis.horizontal,
                       reverse: true,
                       child: Text(
-                        state.expression,
+                        NumberFormatter.formatExpression(state.expression),
                         style: theme.textTheme.displayLarge,
                       ).animate().fadeIn(duration: 400.ms).slideX(begin: 0.2),
                     ),
                     const SizedBox(height: 8),
                     if (state.result.isNotEmpty)
                       Text(
-                        state.result,
+                        NumberFormatter.formatResult(state.result),
                         style: theme.textTheme.displayMedium?.copyWith(
                           color: theme.colorScheme.primary.withValues(alpha: 0.7),
                         ),

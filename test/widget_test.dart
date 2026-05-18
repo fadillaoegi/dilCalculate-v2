@@ -1,30 +1,36 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dilcalculate/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('Calculator UI renders and functions correctly', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(
+      const ProviderScope(
+        child: MainApp(),
+      ),
+    );
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Wait for the initialization animations to finish
+    await tester.pumpAndSettle();
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // Verify that the initial state shows '0' in the display, and there's a '0' button
+    expect(find.text('0'), findsNWidgets(2));
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify that we have the calculator buttons (7, 8, 9, etc.)
+    expect(find.text('7'), findsOneWidget);
+    expect(find.text('8'), findsOneWidget);
+    expect(find.text('9'), findsOneWidget);
+    expect(find.text('AC'), findsOneWidget);
+
+    // Tap '7' and then '8'
+    await tester.tap(find.text('7'));
+    await tester.pumpAndSettle();
+    
+    await tester.tap(find.text('8'));
+    await tester.pumpAndSettle();
+
+    // The display expression should show '78'
+    expect(find.text('78'), findsOneWidget);
   });
 }
