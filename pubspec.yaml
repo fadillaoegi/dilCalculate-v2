@@ -1,5 +1,5 @@
 name: dilcalculate
-description: "A new Flutter project."
+description: "dilcalculate is a simple calculator app built with Flutter. It provides basic arithmetic operations and a user-friendly interface for quick calculations."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev

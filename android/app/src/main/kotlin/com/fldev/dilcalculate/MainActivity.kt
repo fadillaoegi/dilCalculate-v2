@@ -1,4 +1,4 @@
-package com.example.dilcalculate
+package com.fldev.dilcalculate
 
 import io.flutter.embedding.android.FlutterActivity
 
