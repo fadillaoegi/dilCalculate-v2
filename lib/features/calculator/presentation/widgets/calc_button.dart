@@ -7,6 +7,11 @@ class CalcButton extends StatelessWidget {
   final Color? color;
   final Color? textColor;
   final bool isLarge;
+  final double height;
+  final double fontSize;
+  final double borderRadius;
+  final double padding;
+  final double elevation;
 
   const CalcButton({
     super.key,
@@ -15,6 +20,11 @@ class CalcButton extends StatelessWidget {
     this.color,
     this.textColor,
     this.isLarge = false,
+    this.height = 70,
+    this.fontSize = 24,
+    this.borderRadius = 24,
+    this.padding = 8,
+    this.elevation = 2,
   });
 
   @override
@@ -24,23 +34,23 @@ class CalcButton extends StatelessWidget {
     return Expanded(
       flex: isLarge ? 2 : 1,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(padding),
         child: Material(
           color: color ?? theme.colorScheme.surface,
-          borderRadius: BorderRadius.circular(24),
-          elevation: 2,
+          borderRadius: BorderRadius.circular(borderRadius),
+          elevation: elevation,
           shadowColor: Colors.black26,
           child: InkWell(
             onTap: onTap,
-            borderRadius: BorderRadius.circular(24),
+            borderRadius: BorderRadius.circular(borderRadius),
             child: Container(
-              height: 70,
+              height: height,
               alignment: Alignment.center,
               child: Text(
                 label,
                 style: theme.textTheme.labelLarge?.copyWith(
                   color: textColor ?? theme.colorScheme.onSurface,
-                  fontSize: 24,
+                  fontSize: fontSize,
                 ),
               ),
             ),
