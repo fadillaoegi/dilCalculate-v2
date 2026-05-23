@@ -39,6 +39,7 @@ dependencies:
   google_fonts: ^8.1.0
   flutter_animate: ^4.5.2
   shared_preferences: ^2.5.3
+  upgrader: ^13.3.0
 
 dev_dependencies:
   flutter_test:

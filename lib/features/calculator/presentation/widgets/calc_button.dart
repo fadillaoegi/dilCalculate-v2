@@ -30,35 +30,46 @@ class CalcButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    
+
     return Expanded(
       flex: isLarge ? 2 : 1,
       child: Padding(
         padding: EdgeInsets.all(padding),
-        child: Material(
-          color: color ?? theme.colorScheme.surface,
-          borderRadius: BorderRadius.circular(borderRadius),
-          elevation: elevation,
-          shadowColor: Colors.black26,
-          child: InkWell(
-            onTap: onTap,
-            borderRadius: BorderRadius.circular(borderRadius),
-            child: Container(
-              height: height,
-              alignment: Alignment.center,
-              child: Text(
-                label,
-                style: theme.textTheme.labelLarge?.copyWith(
-                  color: textColor ?? theme.colorScheme.onSurface,
-                  fontSize: fontSize,
+        child:
+            Material(
+                  color: color ?? theme.colorScheme.surface,
+                  borderRadius: BorderRadius.circular(borderRadius),
+                  elevation: elevation,
+                  shadowColor: Colors.black26,
+                  child: InkWell(
+                    onTap: onTap,
+                    borderRadius: BorderRadius.circular(borderRadius),
+                    child: Container(
+                      height: height,
+                      alignment: Alignment.center,
+                      child: Text(
+                        label,
+                        style: theme.textTheme.labelLarge?.copyWith(
+                          color: textColor ?? theme.colorScheme.onSurface,
+                          fontSize: fontSize,
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+                .animate(onInit: (controller) => controller.forward(from: 0))
+                .scale(
+                  begin: const Offset(1, 1),
+                  end: const Offset(0.95, 0.95),
+                  duration: 100.ms,
+                  curve: Curves.easeInOut,
+                )
+                .then()
+                .scale(
+                  begin: const Offset(0.95, 0.95),
+                  end: const Offset(1, 1),
+                  duration: 100.ms,
                 ),
-              ),
-            ),
-          ),
-        ).animate(onInit: (controller) => controller.forward(from: 0))
-         .scale(begin: const Offset(1, 1), end: const Offset(0.95, 0.95), duration: 100.ms, curve: Curves.easeInOut)
-         .then()
-         .scale(begin: const Offset(0.95, 0.95), end: const Offset(1, 1), duration: 100.ms),
       ),
     );
   }
